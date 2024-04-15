@@ -1,0 +1,4 @@
+{
+  "serverPort": 5000,
+  "dbUri": "mongodb://192.168.1.115:27017/vezdesens"
+}
