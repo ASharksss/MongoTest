@@ -1,13 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const config = require('config')
-const feature_router = require('./routes/featureRouter')
+const routes = require('./routes/routes')
 const app = express()
 
 const PORT = config.get('serverPort')
 
 app.use(express.json())
-app.use('/api/feature', feature_router)
+app.use('/api', routes)
 
 const start = async () => {
   try {
