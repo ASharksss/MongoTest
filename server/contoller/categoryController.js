@@ -13,6 +13,19 @@ class CategoryController {
       return res.json(e.message)
     }
   }
+
+  async getCategories(req, res, next) {
+    try {
+      let {parent_id} = req.query
+      if (parent_id.trim() === 'null') parent_id = null // проверяем текст на содержания null и превращаем в null
+      const categories = await Category.find({parent_id: parent_id})
+      return res.json(categories)
+    }catch (e) {
+      return res.json(e)
+    }
+
+  }
+
 }
 
 module.exports = new CategoryController()

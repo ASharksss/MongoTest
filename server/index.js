@@ -1,11 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const config = require('config')
 const routes = require('./routes/routes')
 const app = express()
 
 const PORT = config.get('serverPort')
 
+app.use(cors())
 app.use(express.json())
 app.use('/api', routes)
 
