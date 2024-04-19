@@ -1,6 +1,8 @@
 import React from 'react';
+import FeatureBlock from "./FeatureBlock";
 
-const ThreeLevel = ({categoriesOneLevel, categoriesTwoLevel, setCurrentId, setCurrentIdTwo, nameCat, setNameCat}) => {
+const ThreeLevel = ({categoriesOneLevel, categoriesTwoLevel, setCurrentId, setParentId,
+                      nameCat, setNameCat}) => {
   return (
     <div className='flex column'>
       <select onChange={(e) => setCurrentId(e.target.value)}>
@@ -11,7 +13,7 @@ const ThreeLevel = ({categoriesOneLevel, categoriesTwoLevel, setCurrentId, setCu
           ))
         }
       </select>
-      <select onChange={(e) => setCurrentIdTwo(e.target.value)}>
+      <select onChange={(e) => setParentId(e.target.value)}>
         <option value="null">Выберите</option>
         {
           categoriesTwoLevel.map((item, index) => (
@@ -23,15 +25,9 @@ const ThreeLevel = ({categoriesOneLevel, categoriesTwoLevel, setCurrentId, setCu
       <input type="text" placeholder='Введите название категории' value={nameCat}
              onChange={(e) => setNameCat(e.target.value)}/>
       <div>
-        <input type="text" placeholder='Название характеристики'/>
-        <div className='flex items-center checkbox'>
-          <input type="checkbox" id="required" name="required"/>
-          <label htmlFor="required">Обязательное</label>
-        </div>
+        <h1>Привяжите характеристики</h1>
+        <FeatureBlock/>
 
-        <select name="" id="">
-          <option value="">Тип</option>
-        </select>
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 
-const TwoLevel = ({categoriesOneLevel, setNameCat, nameCat}) => {
+const TwoLevel = ({categoriesOneLevel, setNameCat, nameCat, setParentId}) => {
 
   return (
     <div className='flex column'>
       <label htmlFor="">Выберите родителя</label>
-      <select>
+      <select onChange={(e) => setParentId(e.target.value)}>
         <option value="null">Выберите</option>
         {
           categoriesOneLevel.map((item, index) => (

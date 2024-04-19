@@ -31,6 +31,13 @@ h1 {
     width: 150px;
 }
 
+textarea {
+    width: 250px;
+    height: 90px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 select {
     width: 350px;
     height: 25px;
@@ -39,7 +46,7 @@ select {
 }
 
 form {
-    width: 500px;
+    width: 700px;
     height: 500px;
     border: 1px solid black;
     padding: 15px;
@@ -55,4 +62,20 @@ input {
 button {
     width: 150px;
     height: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Features */
+.feature_block {
+    display: flex;
+    border: 1px solid black;
+}
+
+.feature_input {
+    width: 250px;
+}
+
+.feature_select {
+    width: 250px;
 }
