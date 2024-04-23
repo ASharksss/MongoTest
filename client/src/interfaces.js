@@ -12,6 +12,6 @@ export const IFeatures = (name, values, required, type) => {
 
 export const IFeatureValue = (name, slug) => {
   return {
-    name
+    name, slug
   }
 }

@@ -1,14 +1,19 @@
 import React, {useState} from 'react';
 import CategoryService from "../services/categoryService";
+import ValueBlock from "./ValueBlock";
 
 const FeatureBlock = () => {
 
   const [name, setName] = useState('')
   const [required, setRequired] = useState(false)
   const [type, setType] = useState('enter')
-  const [values, setValues] = useState(null)
+  const [values, setValues] = useState([])
+  const [components, setComponents] = useState([<ValueBlock setValues={setValues}/>])
 
-  let valueData = values?.split(" ").map(n => n.replace(/[.,!\n]/g, '')).filter(n => n !== "")
+  const addComponent = () => {
+    setComponents([...components, <ValueBlock setValues={setValues}/>])
+  }
+  console.log(values)
 
   return (
     <>
@@ -27,11 +32,22 @@ const FeatureBlock = () => {
           <option value="checkbox">Checkbox</option>
         </select>
       </div>
-      <div className="features_values">
-        <textarea onChange={(e) => setValues(e.target.value)}></textarea>
-      </div>
-      <button type='button' onClick={(e) => CategoryService.addFeature(e, name, required, type, valueData)
-        .then(data => console.log(data))}>Привязать</button>
+
+      {
+        type !== 'enter' ?
+          <div>
+            <h3>Введите значения характеристик</h3>
+            <button className='add_value' type='button' onClick={addComponent}>+</button>
+            <div className='flex column'>
+              {components.map(component => component)}
+            </div>
+          </div>
+          : null
+      }
+
+      <button type='button' onClick={(e) => CategoryService.addFeature(e, name, required, type, values)
+        .then(data => console.log(data))}>Привязать
+      </button>
     </>
 
   );

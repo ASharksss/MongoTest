@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ICategory, IFeatures} from "../interfaces";
+import {ICategory, IFeatures, IFeatureValue} from "../interfaces";
 
 class CategoryService {
 
@@ -27,8 +27,13 @@ class CategoryService {
 
   async addFeature(e, name, required, type, values) {
     e.preventDefault()
-    const newFeature = IFeatures(name, values, required, type)
-    return newFeature
+    return IFeatures(name, values, required, type)
+
+  }
+
+  async addFeatureValues(e, name, slug) {
+    e.preventDefault()
+    return IFeatureValue(name, slug)
   }
 
 

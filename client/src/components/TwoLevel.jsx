@@ -12,7 +12,6 @@ const TwoLevel = ({categoriesOneLevel, setNameCat, nameCat, setParentId}) => {
             <option key={index} value={item._id}>{item.name}</option>
           ))
         }
-
       </select>
       <input type="text" placeholder='Введите название категории' value={nameCat}
              onChange={(e) => setNameCat(e.target.value)}/>
