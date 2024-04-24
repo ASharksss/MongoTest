@@ -18,9 +18,9 @@ const ValueBlock = ({setValues, values}) => {
         <input type="text" placeholder='slug'
                onChange={event => setSlug(event.target.value)}/>
         <button type='button' onClick={saveValue}>сохранить</button>
+        <button type='button'>удалить</button>
       </div>
     </div>
-
   );
 };
 
