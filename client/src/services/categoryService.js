@@ -26,7 +26,7 @@ class CategoryService {
   }
 
   async addFeature(e, name, required, type, values) {
-    e.preventDefault()
+    //e.preventDefault()
     return IFeatures(name, values, required, type)
 
   }

@@ -35,6 +35,7 @@ function App() {
       })
   }, [currentId])
 
+  console.log(features)
   return (
     <div className="App">
       <select onChange={(e) => setLevel(e.target.value)}>
@@ -60,7 +61,7 @@ function App() {
             : level === '3' ?
               <ThreeLevel categoriesOneLevel={categoriesOneLevel} setParentId={setParentId} nameCat={nameCat}
                           categoriesTwoLevel={categoriesTwoLevel} setCurrentId={setCurrentId}
-                          setNameCat={setNameCat}/> : null}
+                          setNameCat={setNameCat} setFeatures={setFeatures}/> : null}
         <button type='submit'>Отправить</button>
       </form>
     </div>);

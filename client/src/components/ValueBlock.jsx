@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
+import CategoryService from "../services/categoryService";
 
 const ValueBlock = ({setValues, values}) => {
 
   const [name, setName] = useState('')
   const [slug, setSlug] = useState('')
 
-  const saveValue = () => {
+  const saveValue = (e) => {
     if (name === '' && slug === '') return;
-    setValues(prev => [...prev, {name, slug}])
+    CategoryService.addFeatureValues(e, name, slug)
+      .then(data => setValues(prev => [...prev, data]))
+   /* setValues(prev => [...prev, {name, slug}])*/
   }
 
   return (
@@ -17,7 +20,7 @@ const ValueBlock = ({setValues, values}) => {
                onChange={event => setName(event.target.value)}/>
         <input type="text" placeholder='slug'
                onChange={event => setSlug(event.target.value)}/>
-        <button type='button' onClick={saveValue}>сохранить</button>
+        <button type='button' onClick={e => saveValue(e)}>сохранить</button>
         <button type='button'>удалить</button>
       </div>
     </div>

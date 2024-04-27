@@ -2,18 +2,15 @@ import React, {useState} from 'react';
 import CategoryService from "../services/categoryService";
 import ValueBlock from "./ValueBlock";
 
-const FeatureBlock = () => {
+const FeatureBlock = ({setRequired, setValues, setType, setName, values}) => {
 
-  const [name, setName] = useState('')
-  const [required, setRequired] = useState(false)
-  const [type, setType] = useState('enter')
-  const [values, setValues] = useState([])
-  const [components, setComponents] = useState([<ValueBlock setValues={setValues}/>])
+
+  const [typeFeature, setTypeFeature] = useState('enter')
+  const [components, setComponents] = useState([<ValueBlock setValues={setValues} values={values}/>])
 
   const addComponent = () => {
-    setComponents([...components, <ValueBlock setValues={setValues}/>])
+    setComponents([...components, <ValueBlock setValues={setValues} values={values}/>])
   }
-  console.log(values)
 
   return (
     <>
@@ -21,11 +18,14 @@ const FeatureBlock = () => {
         <input className='feature_input' type="text" placeholder='Название характеристики'
                onChange={(e) => setName(e.target.value)}/>
         <div className='flex items-center checkbox'>
-          <input type="checkbox" id="required" name="required"
+          <input type="checkbox" name="required"
                  onChange={(e) => setRequired(e.target.checked)}/>
           <label htmlFor="required">Обязательное</label>
         </div>
-        <select className='feature_select' onChange={(e) => setType(e.target.value)}>
+        <select className='feature_select' onChange={(e) => {
+          setType(e.target.value)
+          setTypeFeature(e.target.value)
+        }}>
           <option value="" disabled>Тип</option>
           <option value="enter">Enter</option>
           <option value="select">Select</option>
@@ -34,7 +34,7 @@ const FeatureBlock = () => {
       </div>
 
       {
-        type !== 'enter' ?
+        typeFeature !== 'enter' ?
           <div>
             <h3>Введите значения характеристик</h3>
             <button className='add_value' type='button' onClick={addComponent}>+</button>
@@ -45,11 +45,7 @@ const FeatureBlock = () => {
           : null
       }
 
-      <button type='button' onClick={(e) => CategoryService.addFeature(e, name, required, type, values)
-        .then(data => console.log(data))}>Привязать
-      </button>
     </>
-
   );
 };
 
